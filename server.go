@@ -14,6 +14,10 @@ func main() {
 		fmt.Println("attempting to server something")
 		http.ServeFile(w, r, "image.html")
 	})
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("attempting to server something")
+		http.ServeFile(w, r, "image.html")
+	})
 
 	fmt.Println("Server started at port 8080")
 	http.ListenAndServe(":8080", nil)
