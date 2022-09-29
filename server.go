@@ -2,15 +2,19 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 )
 
 func main() {
 
-	fmt.Printf("Starting server at port 8080\n")
+	fs := http.FileServer(http.Dir("./data"))
+	http.Handle("/data/", http.StripPrefix("/data/", fs))
 
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.HandleFunc("/image", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("attempting to server something")
+		http.ServeFile(w, r, "image.html")
+	})
 
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	fmt.Println("Server started at port 8080")
+	http.ListenAndServe(":8080", nil)
 }
