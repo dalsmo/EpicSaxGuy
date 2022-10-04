@@ -6,6 +6,7 @@ FROM golang as build-env
 # Set environment variable
 ENV APP_NAME sample-dockerize-app
 ENV CMD_PATH server.go
+LABEL org.opencontainers.image.source="https://github.com/dalsmo/EpicSaxGuy"
 
 # Copy application data into image
 COPY . $GOPATH/src/$APP_NAME
