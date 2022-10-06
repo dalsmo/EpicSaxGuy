@@ -30,6 +30,6 @@ func main() {
 		http.ServeFile(w, r, "./appStuff/image.html")
 	})
 
-	fmt.Println("Server started at port 8081")
-	http.ListenAndServe(":8081", nil)
+	fmt.Println("Server started at port 8076")
+	http.ListenAndServe(":8076", nil)
 }

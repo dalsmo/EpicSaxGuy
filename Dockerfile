@@ -30,7 +30,7 @@ COPY ./data/epic-sax-guy-saxophone.gif /epic-sax-guy-saxophone.gif
 COPY ./image.html /appStuff/image.html
 
 # Expose application port
-EXPOSE 8081
+EXPOSE 8076
 
 # Start app
 CMD ./$APP_NAME
