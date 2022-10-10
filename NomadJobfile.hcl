@@ -10,15 +10,16 @@ job "epicServer" {
             config {
                 image = "ghcr.io/dalsmo/epicsax:latest"
                 network_mode = "host"
+                ports = ["http"]
             }
             service {
                 name = "epicsax"
                 port = "http"
         
- #               tags = [
- #                 "traefik.enable=true",
- #                 "traefik.http.routers.http.rule=Path(`/epicsax`)",
- #               ]
+                tags = [
+                  "traefik.enable=true",
+                  "traefik.http.routers.http.rule=Path(`/epicsax`)",
+                ]
         
               }
         }
