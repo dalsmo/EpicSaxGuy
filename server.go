@@ -21,12 +21,17 @@ func main() {
 	fs := http.FileServer(http.Dir("./appStuff/data"))
 	http.Handle("/data/", http.StripPrefix("/data/", fs))
 
+	http.HandleFunc("/saxgif", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("attempting to server something on /saxgif")
+		http.ServeFile(w, r, "./appStuff/data/epic-sax-guy-saxophone.gif")
+	})
+
 	http.HandleFunc("/image", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("attempting to server something")
+		fmt.Println("attempting to server something on /image")
 		http.ServeFile(w, r, "./appStuff/image.html")
 	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("attempting to server something")
+		fmt.Println("attempting to server something on /")
 		http.ServeFile(w, r, "./appStuff/image.html")
 	})
 

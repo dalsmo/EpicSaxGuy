@@ -5,7 +5,7 @@ job "epicServer" {
             port "http" { static = 8076 }
         }
         task "webservice" {
-            driver = "docker"
+            driver = "podman"
         
             config {
                 image = "ghcr.io/dalsmo/epicsax:latest"
@@ -18,7 +18,9 @@ job "epicServer" {
         
                 tags = [
                   "traefik.enable=true",
-                  "traefik.http.routers.http.rule=Path(`/epicsax`)",
+                  "traefik.http.routers.episax-router.rule=PathPrefix(`/epicsax`)",
+                  "traefik.http.middlewares.episax-stripprefix.stripprefix.prefixes=/epicsax",
+                  "traefik.http.routers.episax-router.middlewares=episax-stripprefix",
                 ]
         
               }
