@@ -5,8 +5,7 @@ job "epicServer" {
             port "http" { static = 8076 }
         }
         task "webservice" {
-            driver = "podman"
-        
+            driver = "docker"
             config {
                 image = "ghcr.io/dalsmo/epicsax:latest"
                 network_mode = "host"
