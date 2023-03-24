@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.meh.service: epic
+    agent: grafana-agent-metrics
+  name: epic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      io.meh.service: epic
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.meh.service: epic
+    spec:
+      containers:
+        #- image: golang-docker-example:latest
+        - image: ghcr.io/dalsmo/epicsax:latest
+          name: epic-thing
+          ports:
+            - containerPort: 8076
+      restartPolicy: Always
+

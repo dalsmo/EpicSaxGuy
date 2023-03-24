@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.meh.service: epic
+  name: epic
+spec:
+  ports:
+    - name: "8076"
+      port: 8076
+      targetPort: 8076
+  selector:
+    io.meh.service: epic
